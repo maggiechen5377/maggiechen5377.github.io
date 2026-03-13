@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Maggie Chen — About Me</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream: #fdf6ec;
+      --warm-brown: #6b3f2a;
+      --terracotta: #c4714a;
+      --dusty-rose: #d4a090;
+      --caramel: #c8864e;
+      --light-tan: #f0e0cc;
+      --dark-text: #3b2416;
+      --mid-text: #7a5040;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark-text);
+      font-family: 'Lora', serif;
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    /* Subtle grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 246, 236, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--light-tan);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav .logo {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--warm-brown);
+      text-decoration: none;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav ul a {
+      text-decoration: none;
+      color: var(--mid-text);
+      font-size: 0.9rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav ul a:hover { color: var(--terracotta); }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      padding: 5rem 5rem 4rem;
+      gap: 3rem;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      right: -80px;
+      top: -80px;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--light-tan) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .hero-text {
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .hero-text .eyebrow {
+      font-size: 0.85rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 1rem;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.15;
+      color: var(--warm-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--terracotta);
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      color: var(--mid-text);
+      max-width: 480px;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 2rem;
+      background: var(--terracotta);
+      color: white;
+      text-decoration: none;
+      font-family: 'Lora', serif;
+      font-size: 0.95rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+      transition: background 0.25s, transform 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--warm-brown);
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      animation: fadeUp 0.9s 0.2s ease both;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image .img-frame {
+      width: 340px;
+      height: 420px;
+      background: var(--light-tan);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow: 8px 12px 40px rgba(107,63,42,0.15);
+      overflow: hidden;
+    }
+
+    .hero-image .img-frame::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--light-tan) 0%, var(--dusty-rose) 100%);
+      opacity: 0.4;
+    }
+
+    .img-placeholder-text {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      color: var(--warm-brown);
+      font-size: 1rem;
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Decorative swirl */
+    .hero-image .decor-ring {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 120px;
+      height: 120px;
+      border: 3px solid var(--dusty-rose);
+      border-radius: 50%;
+      opacity: 0.5;
+    }
+
+    /* ABOUT SECTION */
+    .section {
+      padding: 5rem 5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.75rem;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      color: var(--warm-brown);
+      margin-bottom: 2rem;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      color: var(--mid-text);
+      font-size: 1rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .about-sidebar {
+      background: var(--light-tan);
+      border-left: 3px solid var(--caramel);
+      padding: 2rem;
+      border-radius: 2px;
+    }
+
+    .about-sidebar h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--warm-brown);
+      margin-bottom: 1rem;
+    }
+
+    .about-sidebar ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .about-sidebar ul li {
+      color: var(--mid-text);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .about-sidebar ul li::before {
+      content: '✦';
+      color: var(--terracotta);
+      font-size: 0.6rem;
+    }
+
+    /* BAKING SECTION */
+    .baking-section {
+      background: var(--warm-brown);
+      padding: 5rem;
+      color: var(--cream);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .baking-section::before {
+      content: '';
+      position: absolute;
+      left: -100px;
+      bottom: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--caramel) 0%, transparent 70%);
+      opacity: 0.2;
+    }
+
+    .baking-section .section-label { color: var(--dusty-rose); }
+    .baking-section h2 { color: var(--cream); }
+
+    .baking-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .baking-card {
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 2rem;
+      border-radius: 4px;
+      transition: transform 0.25s, background 0.25s;
+    }
+
+    .baking-card:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .baking-card .icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .baking-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      color: var(--dusty-rose);
+      margin-bottom: 0.75rem;
+    }
+
+    .baking-card p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: rgba(253,246,236,0.8);
+    }
+
+    /* CONTACT */
+    .contact-section {
+      padding: 5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      color: var(--warm-brown);
+      margin-bottom: 1rem;
+    }
+
+    .contact-section p {
+      color: var(--mid-text);
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .contact-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.5rem;
+      border: 1.5px solid var(--terracotta);
+      color: var(--terracotta);
+      text-decoration: none;
+      font-size: 0.9rem;
+      border-radius: 2px;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+
+    .contact-links a:hover {
+      background: var(--terracotta);
+      color: white;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--light-tan);
+      color: var(--mid-text);
+      font-size: 0.85rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in {
+      animation: fadeUp 0.8s ease both;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+      .hero::after { display: none; }
+      .hero-image { display: none; }
+      .section, .baking-section, .contact-section { padding: 3rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .baking-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="logo">Maggie Chen</a>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="baking.html">Baking</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-text">
+      <p class="eyebrow">Welcome to my corner of the internet</p>
+      <h1>Hi, I'm <em>Maggie.</em> Student, baker, and data nerd.</h1>
+      <p>
+        I'm a sophomore at Northeastern University studying Business Administration and Data Science. When I'm not crunching numbers or building visualizations, you'll find me in the kitchen testing a new recipe.
+      </p>
+      <a href="baking.html" class="btn">Explore My Baking →</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section">
+    <p class="section-label">A little about me</p>
+    <h2>Where I'm coming from</h2>
+    <img src="https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=800&auto=format&fit=crop" alt="Baking" style="width:100%; max-width:700px; border-radius:4px; margin-bottom:2.5rem; display:block; box-shadow: 6px 8px 30px rgba(107,63,42,0.12);">
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm currently a sophomore at Northeastern University pursuing a dual degree in Business Administration (with a concentration in Finance & Fintech) and Data Science. I love that my two majors push me to think analytically and creatively at the same time, whether that's building a data pipeline or developing a business strategy.
+        </p>
+        <p>
+          Outside the classroom, I work as a Teaching Assistant for Discrete Structures, helping students navigate the foundational logic and math that underpins computer science. It's one of my favorite parts of the week because there's something really satisfying about the moment a concept finally clicks for someone.
+        </p>
+        <p>
+          I'm multilingual, speaking English natively and Spanish and Chinese conversationally, and I love the way language gives you a different lens on the world. I'm also passionate about community: I've volunteered at a local farm supporting food pantries, worked as a poll worker, and am always looking for ways to give back.
+        </p>
+      </div>
+      <div class="about-sidebar">
+        <h3>Quick facts</h3>
+        <ul>
+          <li>Sophomore at Northeastern University</li>
+          <li>Dual BS: Business Admin & Data Science</li>
+          <li>TA for Discrete Structures</li>
+          <li>Fluent in English, Spanish & Chinese</li>
+          <li>Hobbyist baker & home cook</li>
+          <li>Fan of sewing, drawing & journaling</li>
+          <li>Community farm volunteer</li>
+          <li>Based in Boston, MA</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAKING PREVIEW -->
+  <section class="baking-section">
+    <p class="section-label">A passion of mine</p>
+    <h2>Life is sweeter with homemade bread.</h2>
+    <div class="baking-cards">
+      <div class="baking-card">
+        <div class="icon">🍞</div>
+        <h4>Bread & Pastry</h4>
+        <p>From sourdough loaves with a crackling crust to buttery croissants that take three days to make, the process is as rewarding as the result.</p>
+      </div>
+      <div class="baking-card">
+        <div class="icon">🎂</div>
+        <h4>Cakes & Celebration</h4>
+        <p>Birthdays, holidays, and any random Tuesday all deserve a homemade cake. I love experimenting with flavors and decorating techniques.</p>
+      </div>
+      <div class="baking-card">
+        <div class="icon">🍪</div>
+        <h4>Cookies & Comfort</h4>
+        <p>There is no bad day that a warm chocolate chip cookie can't improve, at least a little. My favorite bake when I need to reset and recharge.</p>
+      </div>
+    </div>
+    <br><br>
+    <a href="baking.html" class="btn" style="background: var(--caramel);">See More →</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <p class="section-label">Get in touch</p>
+    <h2>Say hello!</h2>
+    <p>Whether you want to chat about data, swap recipes, or just connect, I'd love to hear from you.</p>
+    <div class="contact-links">
+      <a href="/cdn-cgi/l/email-protection#55363d303b7b38343232153b3a27213d3034262130273b7b303120">✉️ Email Me</a>
+      <a href="https://www.linkedin.com/in/maggiechen2173/" target="_blank">💼 LinkedIn</a>
+      <a href="https://github.com/maggiechen5377" target="_blank">🐙 GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2026 Maggie Chen · Built with HTML & CSS · Hosted 
